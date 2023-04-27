@@ -20,20 +20,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// router.get("/:contactId", async (req, res, next) => {
-//   try {
-//     const contactId = req.params.contactId;
-//     const contactById = await getContactById(contactId);
+router.get("/:contactId", async (req, res, next) => {
+  try {
+    const contactId = req.params.contactId;
+    const contactById = await getContactById(contactId);
 
-//     if (!contactById) {
-//       throw RequestError(404, "Not Found");
-//     }
+    if (!contactById) {
+      throw RequestError(404, "Not Found");
+    }
 
-//     res.json(contactById);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+    res.json(contactById);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.post("/", async (req, res, next) => {
   try {
