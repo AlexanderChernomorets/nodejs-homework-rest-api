@@ -8,7 +8,7 @@ const {
   updateContact,
 } = require("../../models/contacts");
 const RequestError = require("../../helpers/RequestError");
-const { bodySchema } = require("../../schemas/contacts");
+const { bodySchema, bodySchemaUpdate } = require("../../schemas/contacts");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
@@ -69,7 +69,7 @@ router.delete("/:contactId", async (req, res, next) => {
 
 router.put("/:contactId", async (req, res, next) => {
   try {
-    const validation = bodySchema.validate(req.body);
+    const validation = bodySchemaUpdate.validate(req.body);
     if (validation.error) {
       return res.status(400).json({ status: validation.error.details });
     }
