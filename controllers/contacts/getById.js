@@ -1,5 +1,5 @@
-const Contact = require('../../models/contact');
-const { RequestError } = require('../../helpers');
+const Contact = require("../../models/contact");
+const { RequestError } = require("../../helpers");
 
 const getById = async (req, res, next) => {
   try {
@@ -14,6 +14,8 @@ const getById = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = getById;
+
+
