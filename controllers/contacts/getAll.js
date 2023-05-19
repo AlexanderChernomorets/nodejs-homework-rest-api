@@ -11,7 +11,7 @@ const getAll = async (req, res, next) => {
       filter,
       "-createdAt -updatedAt",
       { skip, limit }
-    );
+    ).populate("owner", "name email");
     res.json(contacts);
   } catch (error) {
     next(error);

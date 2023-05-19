@@ -3,16 +3,21 @@ const { RequestError } = require("../../helpers");
 
 const updateByFavorite = async (req, res, next) => {
   try {
-    const contactId = req.params.contactId;
-    const body = req.body;
+    const { id } = req.params;
+    const { name, email, phone } = req.body;
+    const { _id: owner } = req.user;
 
-    if (body === null) {
+    if ((!name, !email, !phone)) {
       throw RequestError(400, "Missing fields");
     }
 
-    const contactUpdate = await Contact.findByIdAndUpdate(contactId, body, {
-      new: true,
-    });
+    const contactUpdate = await Contact.findByIdAndUpdate(
+      { id, owner },
+      req.body,
+      {
+        new: true,
+      }
+    );
 
     if (!contactUpdate) {
       throw RequestError(404, "Not found");
