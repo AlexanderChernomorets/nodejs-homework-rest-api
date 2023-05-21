@@ -1,15 +1,15 @@
-const { RequestError } = require("../helpers");
+const { RequestError } = require('../helpers');
 
 const validateBody = (schema) => {
-  const fn = (req, res, next) => {
-    const validationResult = schema.validate(req.body);
+    const fn = (req, res, next) => {
+        const validationResult = schema.validate(req.body);
 
-    if (validationResult.error) {
-      next(RequestError(400, validationResult.error.message));
+        if (validationResult.error) {
+            next(RequestError(400, validationResult.error.message));
+        }
+        next();
     }
-    next();
-  };
-  return fn;
-};
+    return fn;
+}
 
 module.exports = validateBody;
